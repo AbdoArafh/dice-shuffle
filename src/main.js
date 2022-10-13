@@ -131,4 +131,29 @@ function applyRotation(rotation) {
     )
     .easing(TWEEN.Easing.Quadratic.Out)
     .start();
+
+  // new TWEEN.Tween(object.rotation)
+  // .to(
+  //   {
+  //     x: Math.random() * Math.PI * 2,
+  //     y: Math.random() * Math.PI * 2,
+  //     z: Math.random() * Math.PI * 2,
+  //   },
+  //   300
+  // )
+  // .easing(TWEEN.Easing.Quadratic.Out)
+  // .onComplete((target) => {
+  //   new TWEEN.Tween(target)
+  //     .to(
+  //       {
+  //         x: (rotation.x || 0) * Math.PI,
+  //         y: (rotation.y || 0) * Math.PI,
+  //         z: (rotation.z || 0) * Math.PI,
+  //       },
+  //       300
+  //     )
+  //     .easing(TWEEN.Easing.Quadratic.Out)
+  //     .start();
+  // })
+  // .start();
 }
