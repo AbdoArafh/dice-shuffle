@@ -1,6 +1,6 @@
 import * as THREE from "three";
+import { TWEEN } from "three/examples/jsm/libs/tween.module.min";
 
-// import { OBJLoader } from "three/addons/loaders/OBJLoader";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader";
 
 import "./style.css";
@@ -8,9 +8,6 @@ import "./style.css";
 let container;
 
 let camera, scene, renderer;
-
-let windowHalfX = window.innerWidth / 2;
-let windowHalfY = window.innerHeight / 2;
 
 let object;
 
@@ -85,9 +82,6 @@ function init() {
 }
 
 function onWindowResize() {
-  windowHalfX = window.innerWidth / 2;
-  windowHalfY = window.innerHeight / 2;
-
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
 
@@ -107,6 +101,7 @@ function animate() {
 
 function render() {
   renderer.render(scene, camera);
+  TWEEN.update();
 }
 
 function randomRoll() {
@@ -121,30 +116,19 @@ function randomRoll() {
     { y: 1 },
   ];
 
-  console.log(index + 1);
-
   return rotations[index];
 }
 
 function applyRotation(rotation) {
-  // object.rotation.x = 0;
-  // object.rotation.y = 0;
-  // object.rotation.z = 0;
-
-  // const xAxis = new THREE.Vector3(1, 0, 0);
-  // const yAxis = new THREE.Vector3(0, 1, 0);
-  // const zAxis = new THREE.Vector3(0, 0, 1);
-  // object.rotateOnWorldAxis(xAxis, (rotation.x || 0) * Math.PI);
-  // object.rotateOnWorldAxis(yAxis, (rotation.y || 0) * Math.PI);
-  // object.rotateOnWorldAxis(zAxis, (rotation.z || 0) * Math.PI);
-
-  // console.log(object.position, object.rotation);
-
-  object.rotation.x = (rotation.x || 0) * Math.PI;
-  object.rotation.y = (rotation.y || 0) * Math.PI;
-  object.rotation.z = (rotation.z || 0) * Math.PI;
-
-  // object.rotateX(rotation.x * Math.PI || 0);
-  // object.rotateY(rotation.y * Math.PI || 0);
-  // object.rotateZ(rotation.z * Math.PI || 0);
+  new TWEEN.Tween(object.rotation)
+    .to(
+      {
+        x: (rotation.x || 0) * Math.PI,
+        y: (rotation.y || 0) * Math.PI,
+        z: (rotation.z || 0) * Math.PI,
+      },
+      300
+    )
+    .easing(TWEEN.Easing.Quadratic.Out)
+    .start();
 }
