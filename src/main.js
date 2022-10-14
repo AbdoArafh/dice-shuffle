@@ -141,12 +141,8 @@ function applyRotation(rotation) {
         duration / 2
       )
       .easing(TWEEN.Easing.Quadratic.In)
-      .onComplete(() => {
-        new TWEEN.Tween(object.rotation)
-          .to(target, duration / 2)
-          .easing(TWEEN.Easing.Quadratic.Out)
-          .start();
-      })
+      .repeat(1)
+      .yoyo(true)
       .start();
   } else {
     new TWEEN.Tween(object.rotation)
