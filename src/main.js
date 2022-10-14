@@ -120,40 +120,38 @@ function randomRoll() {
 }
 
 function applyRotation(rotation) {
-  new TWEEN.Tween(object.rotation)
-    .to(
-      {
-        x: (rotation.x || 0) * Math.PI,
-        y: (rotation.y || 0) * Math.PI,
-        z: (rotation.z || 0) * Math.PI,
-      },
-      300
-    )
-    .easing(TWEEN.Easing.Quadratic.Out)
-    .start();
+  const target = {
+    x: (rotation.x || 0) * Math.PI,
+    y: (rotation.y || 0) * Math.PI,
+    z: (rotation.z || 0) * Math.PI,
+  };
 
-  // new TWEEN.Tween(object.rotation)
-  // .to(
-  //   {
-  //     x: Math.random() * Math.PI * 2,
-  //     y: Math.random() * Math.PI * 2,
-  //     z: Math.random() * Math.PI * 2,
-  //   },
-  //   300
-  // )
-  // .easing(TWEEN.Easing.Quadratic.Out)
-  // .onComplete((target) => {
-  //   new TWEEN.Tween(target)
-  //     .to(
-  //       {
-  //         x: (rotation.x || 0) * Math.PI,
-  //         y: (rotation.y || 0) * Math.PI,
-  //         z: (rotation.z || 0) * Math.PI,
-  //       },
-  //       300
-  //     )
-  //     .easing(TWEEN.Easing.Quadratic.Out)
-  //     .start();
-  // })
-  // .start();
+  const duration = 300;
+
+  if (
+    Object.entries(target).every(
+      ([key, value]) => object.rotation["_" + key] === value
+    )
+  ) {
+    new TWEEN.Tween(object.rotation)
+      .to(
+        Object.entries(target)
+          .map(([key, value]) => [key, value + Math.random() * 0.5])
+          .reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {}),
+        duration / 2
+      )
+      .easing(TWEEN.Easing.Quadratic.In)
+      .onComplete(() => {
+        new TWEEN.Tween(object.rotation)
+          .to(target, duration / 2)
+          .easing(TWEEN.Easing.Quadratic.Out)
+          .start();
+      })
+      .start();
+  } else {
+    new TWEEN.Tween(object.rotation)
+      .to(target, duration)
+      .easing(TWEEN.Easing.Quadratic.Out)
+      .start();
+  }
 }
