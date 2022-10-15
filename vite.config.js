@@ -6,6 +6,7 @@ export default defineConfig({
   plugins: [
     VitePWA({
       registerType: "autoUpdate",
+      includeAssets: ["dice.gltf"],
       manifest: {
         name: "Dice Shuffle 3D",
         short_name: "Dice Shuffle",
