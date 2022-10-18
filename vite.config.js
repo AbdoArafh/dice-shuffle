@@ -11,8 +11,8 @@ export default defineConfig({
         name: "Dice Shuffle 3D",
         short_name: "Dice Shuffle",
         description: "an app to shuffle a dice and get a random number",
-        theme_color: "#000000",
-        background_color: "#000000",
+        theme_color: "#00000000",
+        background_color: "#00000000",
         icons: [
           {
             src: "icon-192x192.png",
