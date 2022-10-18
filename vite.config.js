@@ -12,20 +12,20 @@ export default defineConfig({
         short_name: "Dice Shuffle",
         description: "an app to shuffle a dice and get a random number",
         theme_color: "#000000",
-	background_color: "#000000",
+        background_color: "#000000",
         icons: [
           {
-            src: "vite-192x192.png",
+            src: "icon-192x192.png",
             sizes: "192x192",
             type: "image/png",
           },
           {
-            src: "vite-512x512.png",
+            src: "icon-512x512.png",
             sizes: "512x512",
             type: "image/png",
           },
           {
-            src: "vite-512x512.png",
+            src: "icon-512x512.png",
             sizes: "512x512",
             type: "image/png",
             purpose: "any maskable",
