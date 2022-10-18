@@ -12,6 +12,7 @@ export default defineConfig({
         short_name: "Dice Shuffle",
         description: "an app to shuffle a dice and get a random number",
         theme_color: "#000000",
+	background_color: "#000000",
         icons: [
           {
             src: "vite-192x192.png",
